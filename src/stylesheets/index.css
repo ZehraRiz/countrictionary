@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap");
 .dark-mode {
-  height: 100vh;
   background: #202c37;
   color: white;
 }
@@ -29,7 +28,6 @@
 }
 
 .light-mode {
-  height: 100vh;
   background: #fafafa;
   color: #111517;
 }
@@ -94,15 +92,10 @@ button::-moz-focus-inner {
   padding: 0;
 }
 
-#root, .App {
-  height: 100vh;
-}
-
 body {
   font-size: 14px;
   font-family: 'Nunito Sans', sans-serif;
   width: 100vw;
-  height: 100vh;
   overflow-x: hidden;
 }
 

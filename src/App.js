@@ -2,16 +2,20 @@ import React, {Component} from 'react';
 import Navbar from './components/Navbar'
 import Filters from './components/Filters'
 import Cardlist from './components/CardList'
-import {countries} from "./countries"
 
 class App extends Component{
   state = { 
-    countryList: countries,
+    countryList: [],
     searchField: "",
     region: "",
     darkMode: this.getInitialMode
   }
 
+  componentDidMount(){
+    fetch("https://restcountries.eu/rest/v2/all")
+    .then(response => response.json())
+    .then(countries => this.setState({countryList: countries}))
+  }
   onSearchChange = (event) =>{
     let searchField = event.target.value
     this.setState({
