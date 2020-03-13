@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap");
+.dark-mode {
+  height: 100vh;
+  background: #202c37;
+  color: white;
+}
+
+.dark-mode nav {
+  background: #2b3945;
+}
+
+.dark-mode button {
+  background: #2b3945;
+  color: white;
+}
+
+.dark-mode input {
+  background: #2b3945;
+  color: white;
+}
+
+.dark-mode .Dropdown-root {
+  color: white;
+}
+
+.dark-mode .card {
+  background-color: #2b3945;
+  color: white;
+}
+
+.light-mode {
+  height: 100vh;
+  background: #fafafa;
+  color: #111517;
+}
+
+.light-mode nav {
+  background: white;
+}
+
+.light-mode button {
+  background: white;
+  color: #111517;
+}
+
+.light-mode input {
+  background: white;
+  color: #111517;
+}
+
+.light-mode .Dropdown-root {
+  color: #111517;
+}
+
+.light-mode .card {
+  background: white;
+  color: #111517;
+}
+
+/* .dark-blue-dm-elements{
+    background:hsl(209, 23%, 22%)
+}
+.very-dark-blue-dm-bg{
+background: hsl(207, 26%, 17%)
+}
+.very-dark-blue-lm-text{
+color:hsl(200, 15%, 8%)
+}
+.dark-grey-lm-input{
+    color: hsl(0, 0%, 52%)
+}
+.very-light-gray-lm-bg{
+    color:hsl(0, 0%, 98%)
+}
+.white-dm-text{
+    color:hsl(0, 0%, 100%)
+}
+.white-lm-elements{
+    background:hsl(0, 0%, 100%)
+}
+ */
+button {
+  cursor: pointer;
+  border: 0;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root, .App {
+  height: 100vh;
+}
+
+body {
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 20px 40px;
+}
+
+.card-list {
+  padding: 30px;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 40px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .card-list {
+    -ms-grid-columns: (1fr)[4];
+        grid-template-columns: repeat(4, 1fr);
+    padding: 30px 40px;
+  }
+}
+
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+
+.card .description {
+  padding: 1rem 1rem 2rem;
+  font-size: 14px;
+}
+
+.card .description label {
+  font-weight: 600;
+}
+
+.card .description h2 {
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+img {
+  width: 100%;
+  height: 180px;
+}
+
+.nav-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  padding: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.nav-bar i {
+  margin-right: 5px;
+}
+
+@media only screen and (min-width: 1030px) and (max-width: 1366px) {
+  .nav-bar {
+    padding: 30px 40px;
+  }
+}
+
+.filters {
+  padding: 30px 30px 10px;
+}
+
+@media only screen and (min-width: 1030px) {
+  .filters {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.filters .search {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: none;
+}
+
+@media only screen and (min-width: 1030px) {
+  .filters .search {
+    margin: 0;
+    width: 30%;
+  }
+}
+
+.Dropdown-root {
+  width: 50%;
+}
+
+@media only screen and (min-width: 1030px) {
+  .Dropdown-root {
+    width: 20%;
+  }
+}
+/*# sourceMappingURL=index.css.map */
