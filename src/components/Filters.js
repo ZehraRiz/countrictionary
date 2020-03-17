@@ -24,7 +24,7 @@ class Filters extends Component{
         onChange = {this.props.onSearchChange}>
         </input>
         
-        <Dropdown 
+        <Dropdown className='dd'
         options={this.state.options}  
         value ={this.state.region} 
         onChange={this.regionSelected}  

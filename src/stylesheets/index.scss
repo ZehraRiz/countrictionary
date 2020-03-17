@@ -11,8 +11,8 @@
 body{
     font-size: 14px;
     font-family: 'Nunito Sans', sans-serif;
-    width: 100vw;
     overflow-x: hidden;
+  
 }
 
 .container{
@@ -33,15 +33,11 @@ body{
 
 
 .card{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 320px;
+  text-decoration: none;
   overflow: hidden;
-  
-
   .description{
-    padding: 1rem 1rem 2rem;
+    margin: 1rem;
+    margin-left: 1rem;
     font-size: 14px;
     label{
       font-weight: 600;
@@ -61,7 +57,7 @@ img{
 
 .nav-bar{
   position: sticky;
-  padding: 30px;
+  padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -102,3 +98,159 @@ and (max-width: 1366px){
   }
 }
 
+
+
+a{
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+
+.description{
+  text-decoration: none;
+}
+
+.Dropdown-option{
+  &:hover{
+  text-decoration: underline;
+  
+}
+}
+
+.detail-page{
+  overflow: hidden;
+  margin: 30px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 85vh;
+  
+  @media only screen and (min-width: 1030px){
+    justify-content: space-between;
+    height: auto;
+    overflow-y: hidden;
+    margin: 0;
+  }
+  a{
+    height: 50px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    @media only screen and (min-width: 1030px){
+      margin: 20px 30px;
+      height: 50px;
+      width: 160px;
+      button{
+      font-size: 16px;
+    }
+      
+    }
+
+    
+  }
+
+  
+  .detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 90%;
+
+    @media only screen and (min-width: 1030px){
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin: 20px 30px;
+    }
+
+    img{
+      height: 200px;
+      @media only screen and (min-width: 1030px){
+        width: 45%;
+        height: 30%;
+      }
+    }
+
+    &_country{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      @media only screen and (min-width: 1030px){
+        width: 45%;
+        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        //grid-template-rows: repeat(auto, 4);
+        grid-gap: 30px;
+        grid-template-areas: 
+          "name name"
+          "d1 d2" 
+          "border border";
+      }
+      
+
+      &_name{
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 10px;
+        @media only screen and (min-width: 1030px){
+          grid-area: name;
+          margin-top: 0;
+          font-size: 25px;
+        }
+      }
+
+      &_description_1{
+        margin-bottom: 10px;
+        @media only screen and (min-width: 1030px){
+          grid-area: d1;
+          margin-top: 0;
+          font-size: 18px;
+          p{margin-bottom: 5px;}
+          
+        }
+      }
+      &_description_2{
+        margin-bottom: 10px;
+        @media only screen and (min-width: 1030px){
+          grid-area: d2;
+          margin-top: 0;
+          font-size: 18px;
+          p{margin-bottom: 5px;}
+        }
+      }
+      &_border{
+
+        @media only screen and (min-width: 1030px){
+          grid-area: border;
+          margin-top: 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          
+        }
+        p{
+          font-size: 16px;
+          @media only screen and (min-width: 1030px){
+          font-size: 22px;}
+        }
+        &_buttons{
+        margin-top: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        @media only screen and (min-width: 1030px){
+          margin-top: 0px;}
+        button{
+          padding: 5px 10px;
+          @media only screen and (min-width: 1030px){
+          margin:0 10px;}
+        }
+      }
+    }
+    }
+  }
+}
