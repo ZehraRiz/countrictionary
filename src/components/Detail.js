@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import Border from './Border'
+import Border from "./Border"
 
-
-function Detail ({match}) {
+ function Detail ({match}) {
     useEffect(()=> {
         fetchItem();
     }, []);
@@ -62,4 +61,4 @@ function Detail ({match}) {
     )
 }
 
-export default Detail;
+export default Detail; 

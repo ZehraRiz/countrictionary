@@ -17,33 +17,16 @@
 .light-mode{
     height: 100vh;
     background:hsl(0, 0%, 98%);
-    color:hsl(200, 15%, 8%);
-    .card-list{
-        background:hsl(0, 0%, 98%);
-        color:hsl(0, 0%, 100%);
-    }
-    nav{
-        background:hsl(0, 0%, 100%);
-    }
-    button{
+
+    nav, button, input, .card, .description, .Dropdown-control, .Dropdown-menu, .Dropdown-option, a{
         background:hsl(0, 0%, 100%);
         color:hsl(200, 15%, 8%);
-    }
-    input{
-        background:hsl(0, 0%, 100%);
-        color:hsl(200, 15%, 8%)
-    }
-    .Dropdown-root{
-        color:hsl(200, 15%, 8%)
-    }
-    .card{
-        background:hsl(0, 0%, 100%);
-        color:hsl(200, 15%, 8%)
-    }
-    .description{
-        text-decoration: none;
-        color:hsl(200, 15%, 8%)
-    }
+        border: none;
+        }
+        .card-list, .detail, .detail-page{
+            background-color: hsl(0, 0%, 98%);
+            color:hsl(200, 15%, 8%)
+        }
 }
 
 /* .dark-blue-dm-elements{

@@ -1,5 +1,5 @@
 import React from 'react';
-import Detail from '../components/Detail'
+import DetailTest from '../components/DetailTest'
 import { Link } from "react-router-dom";
 
 function DetailPage ({match}){
@@ -7,7 +7,7 @@ function DetailPage ({match}){
     <div className = "detail-page"><Link to="/">
     <button className= "back-button">Back</button>
     </Link>
-    <Detail match = {match}></Detail>
+    <DetailTest match = {match}></DetailTest>
     </div>)
 }
 

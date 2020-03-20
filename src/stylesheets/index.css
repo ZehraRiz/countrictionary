@@ -18,39 +18,16 @@
 .light-mode {
   height: 100vh;
   background: #fafafa;
-  color: #111517;
 }
 
-.light-mode .card-list {
-  background: #fafafa;
-  color: white;
-}
-
-.light-mode nav {
-  background: white;
-}
-
-.light-mode button {
+.light-mode nav, .light-mode button, .light-mode input, .light-mode .card, .light-mode .description, .light-mode .Dropdown-control, .light-mode .Dropdown-menu, .light-mode .Dropdown-option, .light-mode a {
   background: white;
   color: #111517;
+  border: none;
 }
 
-.light-mode input {
-  background: white;
-  color: #111517;
-}
-
-.light-mode .Dropdown-root {
-  color: #111517;
-}
-
-.light-mode .card {
-  background: white;
-  color: #111517;
-}
-
-.light-mode .description {
-  text-decoration: none;
+.light-mode .card-list, .light-mode .detail, .light-mode .detail-page {
+  background-color: #fafafa;
   color: #111517;
 }
 
@@ -120,6 +97,8 @@ body {
 }
 
 .card {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
   text-decoration: none;
   overflow: hidden;
 }
@@ -145,6 +124,8 @@ img {
 }
 
 .nav-bar {
+  -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
   position: -webkit-sticky;
   position: sticky;
   padding: 20px;
@@ -190,6 +171,8 @@ img {
 }
 
 .filters .search {
+  -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
   display: block;
   width: 100%;
   padding: 15px;
@@ -264,6 +247,8 @@ a {
 }
 
 .detail-page a {
+  -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
   height: 50px;
   width: 130px;
   display: -webkit-box;
@@ -272,6 +257,11 @@ a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.detail-page a button {
+  height: 100%;
+  width: 100%;
 }
 
 @media only screen and (min-width: 1030px) {
@@ -316,6 +306,8 @@ a {
 }
 
 .detail-page .detail img {
+  -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
   height: 200px;
 }
 

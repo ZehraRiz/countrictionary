@@ -1,39 +1,78 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-function Border ({borders}){
-
-    let neighbours = ""
+class Border extends Component{
     
-    if(borders!= null){
-     neighbours = borders.map(neighbour => {
-         let neighbourName = ""
-         fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`)
-         .then(response => response.json())
-         .then(data => {
-             data = data.name
-             neighbourName = data
-             return neighbourName
-         });  
-         return neighbourName
-     })
-    }  
+    state = {
+        borderCountries : []
+    }
 
-    console.log(neighbours)
+    componentDidMount(){
+        const borders = this.props.borders;
+        let myArr = []
+        if(borders!= null){
+             borders.map(async(country) => {
+                const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`)
+                const data = await response.json()
+                myArr.push(data)
+            })
+            this.setState({borderCountries:myArr})
+            console.log(this.state.borderCountries)
+        }
+    }
 
-    return(
-        <div className = "detail_country_border_buttons">
-       {neighbours}
-        </div>
-    )
+    render(){
+        const borderCountries = this.state.borderCountries;
+        let borderCountriesButtons = borderCountries.map(country=>{ 
+            return <button key= {country.name}>{country.name}</button>
+        })
+        
+        if (!borderCountries){
+            return <h1>loading</h1>
+        }
+        
+        
+        return(
+            <div className = "detail_country_border_buttons"> 
+            {borderCountriesButtons}</div>
+        )
+    }
+        
+    
+
+
+
 }
-
-
 export default Border;
 
 
 
 
+/* const [boderCountries, setBorderCuntries] = useState([]) 
 
+    useEffect( ()=> {
+        getBorderCountries()
+    }, []);
+
+
+
+    const getBorderCountries = () => {
+    if(borders!= null){
+     let neighbours = borders.map(neighbour => {
+         fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`)
+         .then(response => response.json())
+         .then(data => {
+             console.log(data)});  
+     })
+    }  else console.log("null border")
+    }
+
+    
+
+
+    return(
+        <div className = "detail_country_border_buttons">
+       
+        </div>) */
 
 
 /* import React, {Component} from 'react';

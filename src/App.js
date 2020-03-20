@@ -15,8 +15,9 @@ class App extends Component{
     countryList: [],
     searchField: "",
     region: "",
-    darkMode: this.setMode
+    darkMode: this.getInitialMode
   }
+
 
   componentDidMount(){
     fetch("https://restcountries.eu/rest/v2/all")
@@ -42,12 +43,12 @@ class App extends Component{
     this.setState({
       darkMode: !prevMode
     })
-    localStorage.setItem('darkMode', JSON.stringify(!prevMode));
+    localStorage.setItem("dark", JSON.stringify(this.state.darkMode))
   }
 
-  setMode = () =>{
-    const savedMode = localStorage.getItem('darkMode');
-    return JSON.parse(savedMode) || false
+  getInitialMode = () =>{
+    const savedMode = JSON.parse(localStorage.getItem('darkMode'))
+    return savedMode || false
   
   }
 
@@ -60,7 +61,7 @@ class App extends Component{
   return (
     <Router>
     <div className= "App">
-    <div className = "dark-mode">
+    <div className = {this.state.darkMode ? "dark-mode" : "light-mode"}>
     <Navbar toggleMode = {this.toggleMode} darkMode = {this.state.darkMode}></Navbar>
     <Switch>
     <Route exact path= '/'
