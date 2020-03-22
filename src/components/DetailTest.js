@@ -2,10 +2,14 @@ import React, {Component} from 'react'
 import Border from './Border'
 
 class DetailTest extends Component {
-    state = {
-        countryName: this.props.match.params._country_name,
-        countryDetails: null
+    constructor(props) {
+        super(props);
+        this.state = {
+            countryName: this.props.match.params._country_name,
+            countryDetails: null
     }
+      }
+    
 
     componentDidMount = async() => {
         const response = await fetch(`https://restcountries.eu/rest/v2/name/${this.state.countryName}`)
@@ -22,6 +26,7 @@ class DetailTest extends Component {
             return <h1>loading</h1>
         }
         return(
+
             <div className = "detail">
         <img src = {country.flag} alt= "flag"></img>
         <div className = "detail_country">
@@ -34,13 +39,13 @@ class DetailTest extends Component {
             <p>Capital: {country.capital}</p></div>
             <div className = "detail_country_description_2">
             <p>Top LevelDomain: {country.topLevelDomain}</p>
-            <p>currencies: {country.currencies[0].name}</p>
-            <p>Languages: {country.languages[0].name}</p>
+             <p>currencies: {country.currencies[0].name}</p>
+            <p>Languages: {country.languages[0].name}</p> 
             </div>
             <div className = "detail_country_border">
             <p>Border Countries:</p>
-            <Border borders = {country.borders}>
-            </Border>
+
+            <Border borders = {country.borders}></Border>
             </div>
         </div>
         </div>
