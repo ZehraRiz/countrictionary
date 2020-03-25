@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 function DetailPage ({match}){
     return(
-    <div className = "detail-page"><Link to="/">
-    <button className= "back-button">Back</button>
+    <div className = "detail-page">
+    <Link to="/"><button className= "back-button">Back</button>
     </Link>
-    <DetailTest match = {match}></DetailTest>
+    <DetailTest match = {match}/>
     </div>)
 }
 

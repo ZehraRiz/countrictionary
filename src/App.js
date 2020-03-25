@@ -23,7 +23,9 @@ class App extends Component{
     fetch("https://restcountries.eu/rest/v2/all")
     .then(response => response.json())
     .then(countries => this.setState({countryList: countries}))
+    .catch(err => console.log(err))
   }
+  
   onSearchChange = (event) =>{
     let searchField = event.target.value
     this.setState({
@@ -64,23 +66,14 @@ class App extends Component{
     <div className = {this.state.darkMode ? "dark-mode" : "light-mode"}>
     <Navbar toggleMode = {this.toggleMode} darkMode = {this.state.darkMode}></Navbar>
     <Switch>
-    <Route exact path= '/'
+    <Route exact strice path= '/'
     render = {()=>(<Home  
       onSearchChange = {this.onSearchChange} 
       onFilterChange = {this.onFilterChange}
       countryList ={filteredCountries}/>)}/>
+
     <Route path = '/:_country_name' component = {DetailPage}/>
     </Switch>
-
-{/* {this.state.darkMode ? "dark-mode":
-    "light-mode"} <Navbar toggleMode = {this.toggleMode} darkMode = {this.state.darkMode}></Navbar>
-    <Filters onSearchChange = {this.onSearchChange} onFilterChange = {this.onFilterChange} ></Filters>
-    <Switch>
-    <Route exact path= '/'
-    render = {()=>(<CardList  countryList ={filteredCountries}/>)}/>
-    <Route path = '/:_country_name' component = {Detail}/>
-    </Switch>  */}
-
 
     </div>
     </div>

@@ -25,6 +25,9 @@ body{
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 40px;
+  @media only screen and (min-width: 768px){
+    grid-template-columns: repeat( 2, 1fr);
+  }
  @media only screen and (min-width: 1200px) {
   grid-template-columns: repeat( 4, 1fr);
   padding: 30px 40px ;
@@ -58,7 +61,6 @@ img{
 
 .nav-bar{
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
-  position: sticky;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -128,11 +130,15 @@ a{
 
 .detail-page{
   overflow: hidden;
-  margin: 30px 30px;
+  margin: 10px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 85vh;
+  height: 90%;
+
+  @media only screen and (min-width: 768px){
+    margin-top: 20px;
+  }
   
   @media only screen and (min-width: 1030px){
     justify-content: space-between;
@@ -142,7 +148,6 @@ a{
   }
   a{
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
-
     height: 50px;
     width: 130px;
     display: flex;
@@ -168,19 +173,21 @@ a{
   .detail{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     height: 90%;
+
+
 
     @media only screen and (min-width: 1030px){
       flex-direction: row;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       margin: 20px 30px;
     }
 
     img{
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
-      height: 200px;
+      height: 30%;
       @media only screen and (min-width: 1030px){
         width: 45%;
         height: 30%;
@@ -191,6 +198,13 @@ a{
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+      margin-top: 10px;
+
+      @media only screen and (min-width: 768px){
+        height: 60%;
+        font-size: 18px;
+      }
+
       @media only screen and (min-width: 1030px){
         width: 45%;
         justify-content: flex-start;
@@ -209,6 +223,9 @@ a{
         font-size: 20px;
         font-weight: 800;
         margin-bottom: 10px;
+        @media only screen and (min-width: 768px){
+          font-size: 22px;
+        }
         @media only screen and (min-width: 1030px){
           grid-area: name;
           margin-top: 0;
@@ -247,22 +264,39 @@ a{
         }
         p{
           font-size: 16px;
+          @media only screen and (min-width: 768px){
+            font-size: 18px;
+          }
+
           @media only screen and (min-width: 1030px){
           font-size: 22px;}
         }
         &_buttons{
         margin-top: 8px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        @media only screen and (min-width: 1030px){
-          margin-top: 0px;}
-        button{
-          padding: 5px 10px;
-          @media only screen and (min-width: 1030px){
-          margin:0 10px;}
+        flex-wrap: wrap;
+        overflow: hidden;
+        @media only screen and (min-width: 768px){
+          margin-top: 10px;
         }
-      }
+        @media only screen and (min-width: 1030px){
+          margin-top: 0px;
+          justify-content: space-around;
+        }
+        a{
+          height: 40px;
+          width: 90px;
+          margin-bottom: 5px;
+          margin-left: 5px;
+          font-size: 10px;
+          @media only screen and (min-width: 768px){
+            height: 50px;
+            width: 120px;
+          }
+          @media only screen and (min-width: 1030px){
+          margin: 3px 10px;}
+        
+      }}
     }
     }
   }

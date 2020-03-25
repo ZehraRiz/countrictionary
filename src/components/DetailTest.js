@@ -1,25 +1,51 @@
 import React, {Component} from 'react'
-import Border from './Border'
+import {Link} from 'react-router-dom'
 
 class DetailTest extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            countryName: this.props.match.params._country_name,
-            countryDetails: null
+            country: this.props.match.params._country_name,
+            countryDetails: null,
+            borderCountries: []
     }
       }
     
 
+      componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.match.params._country_name !== prevProps.match.params._country_name) {
+          this.setState({country: this.props.match.params._country_name})
+          this.callFetch(this.props.match.params._country_name)
+        }
+      }
     componentDidMount = async() => {
-        const response = await fetch(`https://restcountries.eu/rest/v2/name/${this.state.countryName}`)
-        const data = await response.json()
-        this.setState({countryDetails: data[0]})
-        
+        this.callFetch(this.state.country);
     }
 
+    callFetch = async(country) => {
+        const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+        const data = await response.json()
+        this.setState({countryDetails: data[0]})
+        this.getCountries()
+        } 
 
-    renderDetail(){
+        getCountries = async () =>{
+            let myArr = this.state.countryDetails.borders.map(async(country) => {
+                    const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`)
+                    const data = await response.json()
+                    return data.name
+                })
+
+                 const resolved = await Promise.all(myArr)
+                  this.setState({borderCountries: resolved})
+            }
+
+    
+
+
+
+    render(){
         const country = this.state.countryDetails
         
         if (!country ){
@@ -44,8 +70,13 @@ class DetailTest extends Component {
             </div>
             <div className = "detail_country_border">
             <p>Border Countries:</p>
+            <div className = "detail_country_border_buttons">
+          {this.state.borderCountries.map(c=> <Link key= {c} to ={`/${c}`} >
+          <button > {c} </button>
+          </Link>
+          )}
+          </div>
 
-            <Border borders = {country.borders}></Border>
             </div>
         </div>
         </div>
@@ -53,9 +84,6 @@ class DetailTest extends Component {
         )
     }
 
-    render(){
-        return(<div>{this.renderDetail()}</div>)
-    }
 
 }
 

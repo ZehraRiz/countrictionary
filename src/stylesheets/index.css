@@ -11,7 +11,7 @@
 }
 
 .dark-mode .card-list, .dark-mode .detail, .dark-mode .detail-page {
-  background-color: #202c37;
+  background-color: #202c37 !important;
   color: white;
 }
 
@@ -88,6 +88,13 @@ body {
   grid-gap: 40px;
 }
 
+@media only screen and (min-width: 768px) {
+  .card-list {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media only screen and (min-width: 1200px) {
   .card-list {
     -ms-grid-columns: (1fr)[4];
@@ -126,8 +133,6 @@ img {
 .nav-bar {
   -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
-  position: -webkit-sticky;
-  position: sticky;
   padding: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -221,7 +226,7 @@ a {
 
 .detail-page {
   overflow: hidden;
-  margin: 30px 30px;
+  margin: 10px 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -232,7 +237,13 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 85vh;
+  height: 90%;
+}
+
+@media only screen and (min-width: 768px) {
+  .detail-page {
+    margin-top: 20px;
+  }
 }
 
 @media only screen and (min-width: 1030px) {
@@ -283,9 +294,9 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   height: 90%;
 }
 
@@ -295,9 +306,9 @@ a {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -308,7 +319,7 @@ a {
 .detail-page .detail img {
   -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 5px 6px 0 rgba(0, 0, 0, 0.19);
-  height: 200px;
+  height: 30%;
 }
 
 @media only screen and (min-width: 1030px) {
@@ -329,6 +340,14 @@ a {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .detail-page .detail_country {
+    height: 60%;
+    font-size: 18px;
+  }
 }
 
 @media only screen and (min-width: 1030px) {
@@ -350,6 +369,12 @@ a {
   font-size: 20px;
   font-weight: 800;
   margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .detail-page .detail_country_name {
+    font-size: 22px;
+  }
 }
 
 @media only screen and (min-width: 1030px) {
@@ -411,6 +436,12 @@ a {
   font-size: 16px;
 }
 
+@media only screen and (min-width: 768px) {
+  .detail-page .detail_country_border p {
+    font-size: 18px;
+  }
+}
+
 @media only screen and (min-width: 1030px) {
   .detail-page .detail_country_border p {
     font-size: 22px;
@@ -422,28 +453,43 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 768px) {
+  .detail-page .detail_country_border_buttons {
+    margin-top: 10px;
+  }
 }
 
 @media only screen and (min-width: 1030px) {
   .detail-page .detail_country_border_buttons {
     margin-top: 0px;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
   }
 }
 
-.detail-page .detail_country_border_buttons button {
-  padding: 5px 10px;
+.detail-page .detail_country_border_buttons a {
+  height: 40px;
+  width: 90px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .detail-page .detail_country_border_buttons a {
+    height: 50px;
+    width: 120px;
+  }
 }
 
 @media only screen and (min-width: 1030px) {
-  .detail-page .detail_country_border_buttons button {
-    margin: 0 10px;
+  .detail-page .detail_country_border_buttons a {
+    margin: 3px 10px;
   }
 }
 /*# sourceMappingURL=index.css.map */
