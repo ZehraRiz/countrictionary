@@ -1,64 +1,105 @@
-import React, {useState, useEffect} from 'react';
-import Border from "./Border"
+import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+import Loading from './Loading'
 
- function Detail ({match}) {
-    useEffect(()=> {
-        fetchItem();
-    }, []);
-
-    const [name, setName] =useState()
-    const [flag, setFlag] =useState()
-    const [nativeName, setNativeName] =useState()
-    const [population, setPopulation] =useState()
-    const [region, setRegion] =useState()
-    const [subRegion, setSubRegion] =useState()
-    const [captial, setCapital] =useState()
-    const [topLevelDomain, setTopLevelDomain] =useState()
-    const [currencies, setCurrencies] =useState()
-    const [languages, setLanguages] =useState()
-    const [borders, setBorders] = useState()
-
-    
-    
-    const fetchItem = async () =>{
-        const fetchItem = await fetch(`https://restcountries.eu/rest/v2/name/${match.params._country_name}`)
-        const item = await fetchItem.json();
-        setName(item[0].name);
-        setFlag(item[0].flag);
-        setNativeName(item[0].nativeName);
-        setPopulation(item[0].population);
-        setRegion(item[0].region);
-        setSubRegion(item[0].subregion);
-        setCapital(item[0].capital);
-        setTopLevelDomain(item[0].topLevelDomain);
-        setCurrencies(item[0].currencies[0].name)
-        setLanguages(item[0].languages[0].name);
-        setBorders(item[0].borders);
-        
-
+class DetailTest extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            country: this.props.match.params._country_name,
+            countryDetails: null,
+            borderCountries: undefined,
+            hasBorders: false
     }
-    return(
-        <div className = "detail">
-        <img src = {flag} alt= "flag"></img>
+      }
+    
+
+      componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.match.params._country_name !== prevProps.match.params._country_name) {
+          this.setState({country: this.props.match.params._country_name})
+          this.callFetch(this.props.match.params._country_name)
+        }
+      }
+    componentDidMount = async() => {
+        this.callFetch(this.state.country);
+    }
+
+    callFetch = async(country) => {
+        const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+        const data = await response.json()
+        this.setState({countryDetails: data[0]})
+        this.getCountries()
+        } 
+
+        getCountries = async () =>{
+            let myArr = this.state.countryDetails.borders.map(async(country) => {
+                    const response = await fetch(`https://restcountries.eu/rest/v2/alpha/${country}`)
+                    const data = await response.json()
+                    return data.name
+                })
+
+                 const resolved = await Promise.all(myArr)
+                 if(resolved.length >0)this.setState({borderCountries: resolved, 
+                hasBorders: true})
+            }
+
+    
+
+
+
+    render(){
+        const country = this.state.countryDetails
+        
+        if (!country ){
+            return <Loading/>
+        }
+        return(
+
+            <div className = "detail">
+        <img src = {country.flag} alt= "flag"></img>
         <div className = "detail_country">
-        <p className = "detail_country_name">{name}</p>
+        <p className = "detail_country_name">{country.name}</p>
         <div className = "detail_country_description_1">
-            <p>Native Name: {nativeName}</p>
-            <p>Population: {population}</p>
-            <p>Region: {region}</p>
-            <p>Sub Region: {subRegion}</p>
-            <p>Capital: {captial}</p></div>
+            <p>Native Name: {country.nativeName}</p>
+            <p>Population: {country.population}</p>
+            <p>Region: {country.region}</p>
+            <p>Sub Region: {country.subregion}</p>
+            <p>Capital: {country.capital}</p></div>
             <div className = "detail_country_description_2">
-            <p>Top LevelDomain: {topLevelDomain}</p>
-            <p>currencies: {currencies}</p>
-            <p>Languages: {languages}</p></div>
+            <p>Top LevelDomain: {country.topLevelDomain}</p>
+             <p>currencies: {country.currencies[0].name}</p>
+            <p>Languages: {country.languages[0].name}</p> 
+            </div>
             <div className = "detail_country_border">
             <p>Border Countries:</p>
-            <Border borders = {borders}></Border>
+
+          {!this.state.hasBorders ? (<p className = "no-border">none</p>): (
+            <div className = "detail_country_border_buttons">
+          {this.state.borderCountries.map(c=> <Link key= {c} to ={`/${c}`} >
+          <button > {this.truncate(c)} </button>
+          </Link>
+          )}
+          </div>
+
+          )
+          }
+
             </div>
         </div>
         </div>
-    )
+        
+        )
+    }
+
+    truncate(input) {
+        if (input.length > 8)
+           return input.substring(0,8) + '...'
+        else
+           return input;
+     };
+
+
 }
 
-export default Detail; 
+export default DetailTest;

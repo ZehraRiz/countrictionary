@@ -1,5 +1,5 @@
 import React from 'react';
-import DetailTest from '../components/DetailTest'
+import DetailTest from '../components/Detail'
 import { Link } from "react-router-dom";
 
 function DetailPage ({match}){

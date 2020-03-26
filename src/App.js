@@ -12,19 +12,37 @@ import {
 
 class App extends Component{
   state = { 
+    done: undefined,
     countryList: [],
     searchField: "",
     region: "",
-    darkMode: this.getInitialMode
+    darkMode: ""
   }
+
 
 
   componentDidMount(){
     fetch("https://restcountries.eu/rest/v2/all")
     .then(response => response.json())
     .then(countries => this.setState({countryList: countries}))
+    .then(json => this.setState({ done: true }))
     .catch(err => console.log(err))
+
+    const ls = JSON.parse(localStorage.getItem('darkMode'));
+    if (ls === null) {
+      this.setState({
+        darkMode: false
+      });
+      localStorage.setItem('darkMode',JSON.stringify("false"));
+    }
+    else {
+      this.setState({
+        darkMode: ls
+      });
+    }
   }
+
+  
   
   onSearchChange = (event) =>{
     let searchField = event.target.value
@@ -45,14 +63,10 @@ class App extends Component{
     this.setState({
       darkMode: !prevMode
     })
-    localStorage.setItem("dark", JSON.stringify(this.state.darkMode))
+    localStorage.setItem("darkMode", JSON.stringify(!prevMode))
   }
 
-  getInitialMode = () =>{
-    const savedMode = JSON.parse(localStorage.getItem('darkMode'))
-    return savedMode || false
-  
-  }
+ 
 
 
   render(){
@@ -67,10 +81,19 @@ class App extends Component{
     <Navbar toggleMode = {this.toggleMode} darkMode = {this.state.darkMode}></Navbar>
     <Switch>
     <Route exact strice path= '/'
-    render = {()=>(<Home  
+    render = {()=>(
+          <Home  
       onSearchChange = {this.onSearchChange} 
       onFilterChange = {this.onFilterChange}
-      countryList ={filteredCountries}/>)}/>
+      countryList ={filteredCountries}
+      done = {this.state.done}
+      />
+    )}
+    />
+    
+    
+    
+    
 
     <Route path = '/:_country_name' component = {DetailPage}/>
     </Switch>

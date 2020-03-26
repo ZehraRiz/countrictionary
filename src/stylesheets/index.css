@@ -63,6 +63,42 @@ button::-moz-focus-inner {
   border: 0;
 }
 
+.loader {
+  display: block;
+  margin: auto;
+  margin-top: 200px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid pink;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -243,6 +279,7 @@ a {
 @media only screen and (min-width: 768px) {
   .detail-page {
     margin-top: 20px;
+    padding: 0px 30px;
   }
 }
 
@@ -324,8 +361,8 @@ a {
 
 @media only screen and (min-width: 1030px) {
   .detail-page .detail img {
-    width: 45%;
-    height: 30%;
+    width: 40%;
+    height: 15%;
   }
 }
 
@@ -426,6 +463,9 @@ a {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -448,6 +488,12 @@ a {
   }
 }
 
+@media only screen and (min-width: 1030px) {
+  .detail-page .detail_country_border .no-border {
+    margin-left: 30px;
+  }
+}
+
 .detail-page .detail_country_border_buttons {
   margin-top: 8px;
   display: -webkit-box;
@@ -467,13 +513,11 @@ a {
 @media only screen and (min-width: 1030px) {
   .detail-page .detail_country_border_buttons {
     margin-top: 0px;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
   }
 }
 
 .detail-page .detail_country_border_buttons a {
-  height: 40px;
+  height: 30px;
   width: 90px;
   margin-bottom: 5px;
   margin-left: 5px;
@@ -489,7 +533,13 @@ a {
 
 @media only screen and (min-width: 1030px) {
   .detail-page .detail_country_border_buttons a {
-    margin: 3px 10px;
+    height: 30px;
+    width: 60px;
+    margin: 6px 10px;
+    padding: 3px;
+  }
+  .detail-page .detail_country_border_buttons a button {
+    font-size: 12px;
   }
 }
 /*# sourceMappingURL=index.css.map */
