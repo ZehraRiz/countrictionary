@@ -1,109 +1,104 @@
-import React, {Component} from 'react';
-import Navbar from './components/Navbar'
-import DetailPage from './containers/DetailPage'
-import Home from './containers/Home'
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import Navbar from './components/Navbar';
+import DetailPage from './containers/DetailPage';
+import Home from './containers/Home';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-
-class App extends Component{
-  state = { 
-    done: undefined,
+class App extends Component {
+  state = {
+    darkMode: false,
     countryList: [],
-    searchField: "",
-    region: "",
-    darkMode: ""
-  }
+    done: false,
 
+    searchField: '',
+    region: '',
+  };
 
+  async componentDidMount() {
+    // Get countries
+    const response = await fetch('https://restcountries.eu/rest/v2/all');
+    const countryList = await response.json();
 
-  componentDidMount(){
-    fetch("https://restcountries.eu/rest/v2/all")
-    .then(response => response.json())
-    .then(countries => this.setState({countryList: countries}))
-    .then(json => this.setState({ done: true }))
-    .catch(err => console.log(err))
+    // Get theme
+    const darkMode = this.getThemeMode();
 
-    const ls = JSON.parse(localStorage.getItem('darkMode'));
-    if (ls === null) {
-      this.setState({
-        darkMode: false
-      });
-      localStorage.setItem('darkMode',JSON.stringify("false"));
-    }
-    else {
-      this.setState({
-        darkMode: ls
-      });
-    }
-  }
-
-  
-  
-  onSearchChange = (event) =>{
-    let searchField = event.target.value
+    // Update state
+    const done = true;
     this.setState({
-      searchField: searchField
-    })
+      countryList,
+      darkMode,
+      done,
+    });
   }
 
-  onFilterChange = (event)=>{
-    let region = event.value
+  getThemeMode() {
+    if (localStorage.getItem('darkMode') === 'true') return true;
+    else return false;
+  }
+
+  onSearchChange = event => {
+    let searchField = event.target.value;
     this.setState({
-      region: region
-    })
-  }
+      searchField: searchField,
+    });
+  };
 
-  toggleMode = ()=>{
-    let prevMode = this.state.darkMode;
+  onFilterChange = event => {
+    let region = event.value;
     this.setState({
-      darkMode: !prevMode
-    })
-    localStorage.setItem("darkMode", JSON.stringify(!prevMode))
+      region: region,
+    });
+  };
+
+  toggleMode = () => {
+    const otherMode = !this.getThemeMode();
+    localStorage.setItem('darkMode', otherMode.toString());
+    this.setState({
+      darkMode: otherMode,
+    });
+  };
+
+  render() {
+    const filteredCountries = this.state.countryList.filter(country => {
+      return (
+        country.name
+          .toLowerCase()
+          .includes(this.state.searchField.toLowerCase()) &&
+        country.region.includes(this.state.region)
+      );
+    });
+
+    return (
+      <Router>
+        <div className="App">
+          <div className={this.state.darkMode ? 'dark-mode' : 'light-mode'}>
+            <Navbar
+              toggleMode={this.toggleMode}
+              darkMode={this.state.darkMode}
+            ></Navbar>
+            <Switch>
+              <Route
+                exact
+                strice
+                path="/"
+                render={() => (
+                  <Home
+                    onSearchChange={this.onSearchChange}
+                    onFilterChange={this.onFilterChange}
+                    countryList={filteredCountries}
+                    done={this.state.done}
+                  />
+                )}
+              />
+
+              <Route path="/:_country_name" component={DetailPage} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    );
   }
-
- 
-
-
-  render(){
-    const filteredCountries = this.state.countryList.filter((country)=>{
-      return country.name.toLowerCase().includes(this.state.searchField.toLowerCase())
-      && country.region.includes(this.state.region);
-    })
-  return (
-    <Router>
-    <div className= "App">
-    <div className = {this.state.darkMode ? "dark-mode" : "light-mode"}>
-    <Navbar toggleMode = {this.toggleMode} darkMode = {this.state.darkMode}></Navbar>
-    <Switch>
-    <Route exact strice path= '/'
-    render = {()=>(
-          <Home  
-      onSearchChange = {this.onSearchChange} 
-      onFilterChange = {this.onFilterChange}
-      countryList ={filteredCountries}
-      done = {this.state.done}
-      />
-    )}
-    />
-    
-    
-    
-    
-
-    <Route path = '/:_country_name' component = {DetailPage}/>
-    </Switch>
-
-    </div>
-    </div>
-    </Router>
-  );
-}
 }
 
 export default App;
-
